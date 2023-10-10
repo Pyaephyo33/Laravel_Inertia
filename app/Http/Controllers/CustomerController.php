@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class CustomerController extends Controller
 {
+    public function index(){
+
+    }
     public function create(){
         return inertia::render('create');
     }
