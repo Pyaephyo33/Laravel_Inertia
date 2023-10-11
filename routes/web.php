@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::get('customers/create',[CustomerController::class,'create']);
 Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
 Route::post('customers',[CustomerController::class, 'store']);
+Route::delete('customers/{id}',[CustomerController::class,'destory']);
 
 // Route::get('/',function(){
 //     return view('welcome');
