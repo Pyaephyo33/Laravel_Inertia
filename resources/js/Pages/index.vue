@@ -5,6 +5,10 @@ import { router } from '@inertiajs/vue3';
     function destory(id){
         router.delete('/customers/'+id)
     }
+
+    function edit(id){
+        router.get('/customers/'+id+'/edit')
+    }
 </script>
 
 <template>
@@ -17,11 +21,11 @@ import { router } from '@inertiajs/vue3';
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="customer in customers">
+                <tr v-for="customer in customers" :key="customer">
                     <td>{{ customer.name }}</td>
                     <td>
-                        <button class="btn btn-outline-info">Edit</button>
-                        <button class="btn btn-outline-primary">Edit</button>
+                        <button class="btn btn-outline-info">View</button>
+                        <button @click.prevent="edit(customer.id)" class="btn btn-outline-primary">Edit</button>
                         <button @click.prevent="destory(customer.id)" class="btn btn-outline-danger">Delete</button>
                     </td>
                 </tr>

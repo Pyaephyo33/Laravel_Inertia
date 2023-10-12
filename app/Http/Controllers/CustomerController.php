@@ -35,6 +35,10 @@ class CustomerController extends Controller
         return Redirect::route('customers.index');
     }
 
+    public function edit(){
+        return 1;
+    }
+
     public function destory($id){
         $customer = Customer::findOrFail($id);
         $customer->delete();
