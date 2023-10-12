@@ -7,6 +7,8 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
+use function PHPSTORM_META\map;
+
 class CustomerController extends Controller
 {
     public function index(){
@@ -35,13 +37,31 @@ class CustomerController extends Controller
         return Redirect::route('customers.index');
     }
 
-    public function edit(){
-        return 1;
+    // public function edit($id){
+    //     $customer = Customer::find($id);
+    //     return $customer;
+    // }
+
+    public function edit(Customer $customer){
+        return Inertia::render('edit',[
+            'customer'=>$customer
+        ]);
     }
 
-    public function destory($id){
-        $customer = Customer::findOrFail($id);
-        $customer->delete();
+    public function update(Request $request, Customer $customer){
+        $validated = $request -> validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|max:14|min:10',
+        ]);
+
+        $customer->update($validated);
+
+        return Redirect::route('customers.index');
+    }
+
+    public function destory($customer){
+        $customer = Customer::findOrFail($customer)->delete();
         return Redirect::route('customers.index');
     }
 }
