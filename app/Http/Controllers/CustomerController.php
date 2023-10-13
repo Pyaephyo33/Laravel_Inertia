@@ -34,7 +34,7 @@ class CustomerController extends Controller
 
         Customer::create($validated);
 
-        return Redirect::route('customers.index');
+        return Redirect::route('customers.index')->with('message','customer successfully created!');
     }
 
     // public function edit($id){
@@ -57,11 +57,11 @@ class CustomerController extends Controller
 
         $customer->update($validated);
 
-        return Redirect::route('customers.index');
+        return Redirect::route('customers.index')->with('message','Customer successfully updated!');
     }
 
     public function destory($customer){
         $customer = Customer::findOrFail($customer)->delete();
-        return Redirect::route('customers.index');
+        return Redirect::route('customers.index')->with('message','Customer successfully deleted!');
     }
 }

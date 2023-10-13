@@ -12,7 +12,12 @@ import { router } from '@inertiajs/vue3';
 </script>
 
 <template>
+    <br><br>
+
     <div class="card col-5 offset-3">
+            <div v-if="$page.props.flash.message" class="alert alert-success">
+                <strong>{{ $page.props.flash.message }}</strong>
+            </div>
         <table class="table table-bordered table-hover table-sm">
             <thead>
                 <tr>
